@@ -1,0 +1,26 @@
+.postholder-container { 
+    display: flex;
+    flex-flow: row wrap;
+}
+
+@media screen and (max-width: 500px) {
+    .postholder-container {
+        display: flex;
+        flex-flow: column wrap;
+    }
+}
+
+.create-new-post {
+    position: fixed;
+    margin: 10px;
+    right: 0;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #61c267;
+}
+
+.create-new-post:hover {
+    background-color: #81de8d;
+}

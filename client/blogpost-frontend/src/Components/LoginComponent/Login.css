@@ -1,0 +1,66 @@
+.login-header {
+    background-color: #59e36b;
+    margin: 0px;
+    padding: 5px;
+    margin-top: 0px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.login-header h3 {
+    letter-spacing: 0.3cm;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.login {
+    display: block;
+    text-align: center;
+    width: 40%;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.login-form {
+    display: flex;
+    flex-flow: column;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+}
+.login-form .login_btn {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    background-color: #59e36b;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.login-form .login_btn:hover {
+    background-color: #37bf49;
+}
+
+.login_form_fields input{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.login_form_fields button {
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background-color: #59e36b;
+    transition: all 0.3s ease 0s;
+}
+.login_form_fields button:hover {
+    background-color: #37bf49;
+}

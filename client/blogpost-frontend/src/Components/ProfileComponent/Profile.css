@@ -1,0 +1,23 @@
+.profile-container {
+    margin-top: 10px;
+}
+
+.profile-author-container {
+    /* display: block; */
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.profile-author-container img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid black;
+}
+
+.profile_posts { 
+    display: flex;
+    flex-flow: row wrap;
+}
