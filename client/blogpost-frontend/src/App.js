@@ -21,7 +21,7 @@ class App extends Component {
             <Route exact path="/login" component={ Login }/>
             <Route exact path="/register" component={ Register }/>
             <Route exact path="/my_profile" component={ Profile }/>
-            <Route exact path="/post/:postid" component={ Post }/>
+            <Route exact path="/post/:postid" component={props =>  <Post {...props}/> }/>
           </Switch>
         </Router>
       </div>
