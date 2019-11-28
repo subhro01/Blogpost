@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { updateLoginUser } from '../../actions/signin_login_action';
 import './Login.css';
 
 
@@ -31,7 +34,12 @@ class Login extends Component {
 
     onLoginFormSubmit = () => {
         // TODO: send data to backend system and redirect
-        console.log("ON FORM SUBMIT");
+        const user_detail = {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        this.props.updateLoginUser(user_detail);
     }
 
     render() {
@@ -62,4 +70,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default connect(null, { updateLoginUser })(Login);

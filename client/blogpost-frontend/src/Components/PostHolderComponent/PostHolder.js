@@ -11,9 +11,18 @@ class PostHolder extends Component {
         this.props.fetchPosts();
     }
 
+    componentDidUpdate() {
+        if(JSON.stringify(this.props.newPost) !== JSON.stringify({})) {
+            console.log(this.props);
+            this.props.posts.unshift(post =>
+                <PostCards key={post.id} author={post.author} body={post.body} title={post.title}/>
+            );
+        }
+    }
+
     displayPosts = () => {
         return this.props.posts.map(post => 
-            <PostCards key={post.id} id={post.id} author={post.userId} body={post.body} title={post.title}/>)
+            <PostCards key={post.id} author={post.userId} body={post.body} title={post.title}/>)
     }
 
     render() {
@@ -27,7 +36,8 @@ class PostHolder extends Component {
 }
 
 const mapStateToProps = state => ({
-        posts: state.posts.items
+        posts: state.posts.items,
+        newPost: state.posts.item
 })
 
 export default connect(mapStateToProps, { fetchPosts })(PostHolder);

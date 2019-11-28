@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { createNewUser } from '../../actions/signin_login_action';
 import './Register.css';
 class Register extends Component {
 
@@ -12,7 +15,13 @@ class Register extends Component {
     }
 
     onFormSubmit = () => {
-        console.log('THIS IS FORM SUBMIT');
+        const new_user = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        this.props.createNewUser(new_user);
     }
 
     render() {
@@ -34,4 +43,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default connect(null, { createNewUser })(Register);
