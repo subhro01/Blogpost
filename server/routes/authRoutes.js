@@ -8,7 +8,11 @@ module.exports = (app) => {
         scope: ['profile', 'email']
     }));
     // passport will handle the authentication flow using 'google' strategy.
-    app.get('/auth/google/callback', passport.authenticate('google'));
+    app.get('/auth/google/callback', 
+        passport.authenticate('google'), 
+        (req, res) => {
+            res.redirect('/');
+        });
     app.get('/api/current_user', (req, res) => {
         res.send(req.user);
     })

@@ -21,11 +21,7 @@ class Login extends Component {
             this.setState({ emailLogin: true });
         } 
         else if(strategy === 'google') {
-            // TODO: redirect to google page
-            fetch('http://localhost:5000/auth/google') 
-                .then(res => res.json())
-                .then(console.log)
-                .catch(err => console.log(err));
+            this.props.updateLoginUser(null, strategy);
         }
     }
 
@@ -39,7 +35,7 @@ class Login extends Component {
             password: this.state.password
         }
 
-        this.props.updateLoginUser(user_detail);
+        this.props.updateLoginUser(user_detail, 'email');
     }
 
     render() {
