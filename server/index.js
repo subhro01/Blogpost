@@ -8,11 +8,14 @@ const morgan = require('morgan');
 
 require('./models/Users');
 require('./services/passport'); // it is not returing anything hence no need of assigning
+const register = require('./controllers/register');
 
 mongoose.connect(keys.mongoDBURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Setup the cookie session
 app.use(cookieSession({
@@ -27,6 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app); // authRoute returing a function and we are immediatly invoking that function
+app.post('/api/register', register.registerHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(5000);
+app.listen(PORT, () => console.log('RUNNING ON PORT 5000'));
