@@ -1,4 +1,5 @@
 import { FETCH_POST, NEW_POST } from './types';
+import axios from 'axios';
 
 export const fetchPosts = () => dispatch => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -10,18 +11,11 @@ export const fetchPosts = () => dispatch => {
         .catch(err => console.log('FETCH FAILED ' + err))
 }
 
-export const createPost = (postData) => dispatch => {
-    fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify(postData)
-    })
-    .then(res => res.json())
-    .then(postResp => dispatch({
+export const createPost = (postData) => async dispatch => {
+    const post = await axios.post('/api/create_post', postData);
+    dispatch({
         type: NEW_POST,
-        payload: postResp
-    }))
-    .catch(err => console.log('err', err));
+        payload: post.data
+    })
+    
 }

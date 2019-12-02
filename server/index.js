@@ -8,9 +8,11 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 require('./models/Users');
+require('./models/Blogs');  
 require('./services/passport'); // it is not returing anything hence no need of assigning
 const register = require('./controllers/register');
 const login = require('./controllers/login');
+const post = require('./controllers/post');
 
 mongoose.connect(keys.mongoDBURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -54,6 +56,7 @@ app.post('/api/logout', (req, res, next) => {
     res.clearCookie('sid');
     res.json("logged out");
 });
+app.post('/api/create_post', post.createPostHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('RUNNING ON PORT 5000'));

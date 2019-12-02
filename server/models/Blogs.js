@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const BlogSchema = new Schema({
-    b_id: String,
     author: String,
     author_id: String,
     title: String,

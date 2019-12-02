@@ -21,16 +21,19 @@ class PostModal extends Component {
         const post = {
             title: this.state.title,
             body: this.state.postbody,
-            author: this.state.author
+            author: this.props.user.loggedin_user.name,
+            author_id: this.props.user.loggedin_user.id
         }
         this.props.createPost(post);
-        console.log(this.props.newPost);
     }
 
     onTitleChange = (e) => this.setState({ title: e.target.value });
     onBodyChange = (e) => this.setState({ postbody: e.target.value });
 
     render() {
+        
+        const { name } = this.props.user.loggedin_user;
+        console.log(name);
         return (
             <div className="create-post-modal-container">
                 <Link to='/'>
@@ -42,7 +45,7 @@ class PostModal extends Component {
                     </div>
                     <div className="post-body">
                         <form action="" onSubmit={this.onSubmitForm} className="post-form-body">
-                            <input type="text" name="author" value={this.props.author} disabled/>
+                            <input type="text" name="author" value={ name } disabled/>
                             <input type="text" name="title" onChange={this.onTitleChange} placeholder="TITLE" required/>
                             <button className="upload-button">Uploaad image - feature coming soon</button>
                             <textarea name="postbody" onChange={this.onBodyChange} placeholder="POST" required/>
@@ -56,7 +59,8 @@ class PostModal extends Component {
 }
 
 const mapStateToProps = state => ({
-    newPost: state.posts.item
+    newPost: state.posts.item,
+    user: state.logged
 })
 
 export default connect(mapStateToProps, { createPost })(PostModal);

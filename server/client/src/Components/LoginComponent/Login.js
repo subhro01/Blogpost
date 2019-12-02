@@ -16,9 +16,9 @@ class Login extends Component {
         }
     }
 
-    componentDidUpdate() {
-        console.log('component did update', this.props.auth.loggedin_user);
+    redirectOnLogin = () => {
         if(this.props.auth.loggedin_user.apiOutput === "logged in") {
+            console.log('redirecting');
             return <Redirect to='/' />
         }
     }
@@ -55,6 +55,7 @@ class Login extends Component {
                 <div className="login-header">
                     <h3>LOGIN</h3>
                 </div>
+                { this.redirectOnLogin() }
                 <div className="login-form">
                     { !this.state.emailLogin ? 
                         <button onClick={() => {this.onLogin('email')}} className="login_btn">Login with email</button> 
