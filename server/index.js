@@ -9,6 +9,7 @@ const morgan = require('morgan');
 require('./models/Users');
 require('./services/passport'); // it is not returing anything hence no need of assigning
 const register = require('./controllers/register');
+const login = require('./controllers/login');
 
 mongoose.connect(keys.mongoDBURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -31,6 +32,11 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app); // authRoute returing a function and we are immediatly invoking that function
 app.post('/api/register', register.registerHandler);
+app.post('/api/login', login.loginHandler);
+app.post('/api/logout', (req, res, next) => {
+    console.log(req.cookies)
+    return res.redirect('/');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('RUNNING ON PORT 5000'));

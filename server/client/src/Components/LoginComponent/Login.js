@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Redirect } from 'react-router-dom';    
 import { updateLoginUser } from '../../actions/signin_login_action';
 import './Login.css';
 
@@ -13,6 +13,13 @@ class Login extends Component {
             emailLogin: false,
             email: '',
             password: ''
+        }
+    }
+
+    componentDidUpdate() {
+        console.log('component did update', this.props.auth.loggedin_user.apiOutput );
+        if(this.props.auth.loggedin_user.apiOutput === "logged in") {
+            return <Redirect to='/' />
         }
     }
 
@@ -38,6 +45,10 @@ class Login extends Component {
         this.props.updateLoginUser(user_detail, 'email');
     }
 
+    onFormSubmit = e => {
+        e.preventDefault();
+    }
+
     render() {
         return (
             <div className="login">
@@ -52,7 +63,7 @@ class Login extends Component {
                         <button onClick={() => this.onLogin('google')} className="login_btn">Login with Google</button>
                         : null }
                     { this.state.emailLogin ? 
-                        <form className="login_form_fields" method="POST">
+                        <form className="login_form_fields" method="POST" onSubmit={this.onFormSubmit}>
                             <input type="text" name="email" 
                                 placeholder="Enter email" onChange={this.onEmailChange} required/>
                             <input type="password" name="password" 
@@ -66,4 +77,8 @@ class Login extends Component {
     }
 }
 
-export default connect(null, { updateLoginUser })(Login);
+const mapStateToProps = state => ({
+    auth: state.logged
+})
+
+export default connect(mapStateToProps, { updateLoginUser })(Login);

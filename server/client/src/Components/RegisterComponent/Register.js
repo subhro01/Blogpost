@@ -22,7 +22,6 @@ class Register extends Component {
     }
 
     showNotification = () => {
-        console.log('Show notification', this.state.message)
         if(this.state.message === 'success') return <Redirect to='/'/>
         else if (this.state.message === 'User already exists') {
             return (
