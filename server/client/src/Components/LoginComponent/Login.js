@@ -17,7 +17,7 @@ class Login extends Component {
     }
 
     componentDidUpdate() {
-        console.log('component did update', this.props.auth.loggedin_user.apiOutput );
+        console.log('component did update', this.props.auth.loggedin_user);
         if(this.props.auth.loggedin_user.apiOutput === "logged in") {
             return <Redirect to='/' />
         }

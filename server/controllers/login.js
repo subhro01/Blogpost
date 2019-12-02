@@ -12,6 +12,10 @@ const loginHandler = (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(exists => {
                     if(exists) {
+                        console.log(exists);
+                        req.session.user = user.id
+                        console.log(user.id);
+                        console.log(req.session.user);
                         res.json({
                             "apiOutput": "logged in",
                             "id": user.id,

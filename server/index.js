@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
+const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -19,10 +20,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Setup the cookie session
-app.use(cookieSession({
-    maxAge: 30 * 24 * 60 * 1000, // Time till the cookie will be alive
-    keys: [keys.cookieKey]
-}));
+// app.use(cookieSession({
+//     maxAge: 30 * 24 * 60 * 1000, // Time till the cookie will be alive
+//     keys: [keys.cookieKey]
+// }));
+
+const { NODE_ENV = 'development' } = process.env;
+
+const IN_PROD = NODE_ENV === 'production'
+
+app.use(session({
+    name: 'sid',
+    resave: false,
+    saveUninitialized: false,
+    secret: "kjkldgjdhfglkdflgj19283!34",
+    cookie: {
+        maxAge: 30 * 24 * 60 * 1000,
+        sameSite: true,
+        secure: IN_PROD
+    }
+}))
 
 
 app.use(morgan('combined'));
@@ -34,8 +51,8 @@ require('./routes/authRoutes')(app); // authRoute returing a function and we are
 app.post('/api/register', register.registerHandler);
 app.post('/api/login', login.loginHandler);
 app.post('/api/logout', (req, res, next) => {
-    console.log(req.cookies)
-    return res.redirect('/');
+    res.clearCookie('sid');
+    res.json("logged out");
 });
 
 const PORT = process.env.PORT || 5000;

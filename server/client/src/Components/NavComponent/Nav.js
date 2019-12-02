@@ -14,10 +14,11 @@ class Nav extends Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevProps) {
+        console.log('NEXTPROPS', nextProps)
         return { logged_in: nextProps.auth.is_logged_in };
     }
-
     userLoggedInOrNot = () => {
+        console.log('LOGGED', this.state);
         if(!this.state.logged_in) {
             return (
                 <React.Fragment>

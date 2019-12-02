@@ -1,4 +1,4 @@
-import { NEW_USER, UPDATE_USER } from '../actions/types';
+import { NEW_USER, UPDATE_USER, LOGOUT_USER } from '../actions/types';
 
 const intialState = {
     new_user: {},
@@ -19,6 +19,12 @@ export default function(state = intialState, action) {
                 ...state,
                 loggedin_user: action.payload,
                 is_logged_in: true
+            }
+        case LOGOUT_USER:
+            return {
+                ...state,
+                loggedin_user: {},
+                is_logged_in: false
             }
         default: return state
     }
