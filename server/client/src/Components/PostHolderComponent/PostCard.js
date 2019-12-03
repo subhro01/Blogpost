@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Postcard.css';
-const PostCards = ({ id, userId, title, body }) => {
-    
+const PostCards = ({ _id, author, title, body, post_date }) => {
     return (
-        <div className="card" key={id}>
+        <div className="card">
             <img 
                 src="https://icon-library.net/images/small-icon-images/small-icon-images-11.jpg"
                 alt="demo"
@@ -14,11 +13,11 @@ const PostCards = ({ id, userId, title, body }) => {
                 <h3>{ title }</h3>
                 <p>{ body.length > 20 ? body.substring(0, 10) + '...' : body }</p>
                 <div className="card-author-readmore">
-                    <h4>{ userId }</h4>
+                    <h4>{ author }</h4>
                     <Link 
                         to={{
-                            pathname: `/post/${id}`,
-                            state: { id, title, body, userId}
+                            pathname: `/post/${_id}`,
+                            state: { _id, title, body, author, post_date }
                         }}>
                         <button className="card-button">Read More</button></Link>
                 </div>

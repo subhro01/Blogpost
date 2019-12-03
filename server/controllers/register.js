@@ -21,12 +21,7 @@ const registerHandler = (req, res) => {
                     strategy: 'email'
                 })
                 .save()
-                .then(user => res.json({
-                    "apiOutput": "success",
-                    "name": user.name,
-                    "email": user.email,
-                    "id": user.c_id
-                }))
+                .then(user => res.json({ "apiOutput": 'success' }))
                 .catch(err => res.status(400).json({ "apiOutput": 'Unable to create user' }))
             }
         });

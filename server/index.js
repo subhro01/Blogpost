@@ -57,6 +57,8 @@ app.post('/api/logout', (req, res, next) => {
     res.json("logged out");
 });
 app.post('/api/create_post', post.createPostHandler);
+app.get('/api//user_posts', post.fetchUserPostHandler);
+app.get('/api/all_posts', post.fetchAllPostHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('RUNNING ON PORT 5000'));

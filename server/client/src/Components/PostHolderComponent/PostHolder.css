@@ -24,3 +24,10 @@
 .create-new-post:hover {
     background-color: #81de8d;
 }
+
+.first-post {
+    text-align: center;
+    font-size: 2rem;
+    margin: 10px;
+    padding: 10px;
+}

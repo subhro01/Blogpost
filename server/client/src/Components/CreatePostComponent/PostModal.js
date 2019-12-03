@@ -33,7 +33,6 @@ class PostModal extends Component {
     render() {
         
         const { name } = this.props.user.loggedin_user;
-        console.log(name);
         return (
             <div className="create-post-modal-container">
                 <Link to='/'>

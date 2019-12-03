@@ -17,6 +17,21 @@ const createPostHandler = (req, res) => {
 
 }
 
+const fetchUserPostHandler = (req, res) => {
+    const { userId } = req.body;
+    Blog.findById({ author_id: userId })
+        .then(blogs => res.json(blogs))
+        .catch(err => res.status(400).json("Unable to fetch user's posts"));
+}
+
+const fetchAllPostHandler = (req, res) => {
+    Blog.find()
+        .then(posts => res.json(posts))
+        .catch(err => res.status(400).json("Unable to return all posts"));
+}
+
 module.exports = {
-    createPostHandler
+    createPostHandler,
+    fetchUserPostHandler,
+    fetchAllPostHandler
 }

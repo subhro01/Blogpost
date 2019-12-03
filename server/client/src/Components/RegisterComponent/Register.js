@@ -22,7 +22,7 @@ class Register extends Component {
     }
 
     showNotification = () => {
-        if(this.state.message === 'success') return <Redirect to='/'/>
+        if(this.state.message === 'success') return <Redirect to='/login'/>
         else if (this.state.message === 'User already exists') {
             return (
                 <div className="register-notification">

@@ -12,7 +12,7 @@ export default function(state = intialState, action) {
             return {
                 ...state,
                 new_user: action.payload,
-                is_logged_in: action.payload === 'User already exists' ? false : true
+                is_logged_in: false
             }
         case UPDATE_USER:
             return {

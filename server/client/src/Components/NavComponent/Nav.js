@@ -31,7 +31,9 @@ class Nav extends Component {
                 <React.Fragment>
                     <li className="nav-lgsn"><Link to="/my_profile"><span>Profile</span></Link></li>
                     <li className="nav-lgsn">{ this.props.auth.new_user.name }</li>
-                    <li className="nav-lgsn" onClick={this.logout}><span>Logout</span></li>
+                    <li className="nav-lgsn" onClick={this.logout}>
+                        <Link to="/"><span>Logout</span></Link>
+                    </li>
                 </React.Fragment>
             )
         }
